@@ -8,6 +8,7 @@
   "undef": true,
   "unused": "vars",
   "strict": true,
+  "mocha": true,
   "globals": {
     "Promise": true
   }

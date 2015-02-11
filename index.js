@@ -1,6 +1,8 @@
-var merge = require('utils-merge');
+'use strict';
 
-hexo.config.index_generator = merge({
+var assign = require('object-assign');
+
+hexo.config.index_generator = assign({
   per_page: hexo.config.per_page
 }, hexo.config.index_generator);
 
