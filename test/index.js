@@ -55,6 +55,9 @@ describe('Index generator', function(){
     result[1].data.prev_link.should.eql('');
     result[1].data.next.should.eql(0);
     result[1].data.next_link.should.eql('');
+
+    // Restore config
+    hexo.config.index_generator.per_page = 10;
   });
 
   it('pagination disabled', function(){
@@ -75,5 +78,23 @@ describe('Index generator', function(){
     result[0].data.prev_link.should.eql('');
     result[0].data.next.should.eql(0);
     result[0].data.next_link.should.eql('');
+
+    // Restore config
+    hexo.config.index_generator.per_page = 10;
+  });
+
+  it('custom pagination_dir', function(){
+    hexo.config.index_generator.per_page = 1;
+    hexo.config.pagination_dir = 'yo';
+
+    var result = generator(locals);
+
+    result[0].path.should.eql('');
+    result[1].path.should.eql('yo/2/');
+    result[2].path.should.eql('yo/3/');
+
+    // Restore config
+    hexo.config.index_generator.per_page = 10;
+    hexo.config.pagination_dir = 'page';
   });
 });
