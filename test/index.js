@@ -47,6 +47,7 @@ describe('Index generator', function(){
     result[0].data.prev_link.should.eql('');
     result[0].data.next.should.eql(2);
     result[0].data.next_link.should.eql('page/2/');
+    result[0].data.__index.should.be.true;
 
     result[1].path.should.eql('page/2/');
     result[1].data.current_url.should.eql('page/2/');
@@ -55,6 +56,7 @@ describe('Index generator', function(){
     result[1].data.prev_link.should.eql('');
     result[1].data.next.should.eql(0);
     result[1].data.next_link.should.eql('');
+    result[1].data.__index.should.be.true;
 
     // Restore config
     hexo.config.index_generator.per_page = 10;
@@ -78,6 +80,7 @@ describe('Index generator', function(){
     result[0].data.prev_link.should.eql('');
     result[0].data.next.should.eql(0);
     result[0].data.next_link.should.eql('');
+    result[0].data.__index.should.be.true;
 
     // Restore config
     hexo.config.index_generator.per_page = 10;
