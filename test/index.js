@@ -12,14 +12,15 @@ describe('Index generator', function(){
 
   // Default config
   hexo.config.index_generator = {
-    per_page: 10
+    per_page: 10,
+    order_by: '-date'
   };
 
   before(function(){
     return Post.insert([
-      {source: 'foo', slug: 'foo', date: 1e8},
-      {source: 'bar', slug: 'bar', date: 1e8 + 1},
-      {source: 'baz', slug: 'baz', date: 1e8 - 1}
+      {source: 'foo', slug: 'foo', date: 1e8, order: 0},
+      {source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10},
+      {source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1}
     ]).then(function(data){
       posts = Post.sort('-date');
       locals = hexo.locals.toObject();
@@ -42,7 +43,7 @@ describe('Index generator', function(){
 
     result[0].path.should.eql('');
     result[0].data.current_url.should.eql('');
-    result[0].data.posts.should.eql(posts.limit(2))
+    result[0].data.posts.should.eql(posts.limit(2));
     result[0].data.prev.should.eql(0);
     result[0].data.prev_link.should.eql('');
     result[0].data.next.should.eql(2);
@@ -84,6 +85,48 @@ describe('Index generator', function(){
 
     // Restore config
     hexo.config.index_generator.per_page = 10;
+  });
+
+  describe('order', function () {
+    it('default order', function () {
+      var result = generator(locals);
+
+      result[0].data.posts.should.eql(posts);
+    });
+
+    it('custom order', function () {
+      hexo.config.index_generator.order_by = '-order';
+
+      var result = generator(locals);
+
+      result[0].data.posts.eq(0).source.should.eql('bar');
+      result[0].data.posts.eq(1).source.should.eql('baz');
+      result[0].data.posts.eq(2).source.should.eql('foo');
+
+      hexo.config.index_generator.order_by = 'order';
+
+      result = generator(locals);
+
+      result[0].data.posts.eq(0).source.should.eql('foo');
+      result[0].data.posts.eq(1).source.should.eql('baz');
+      result[0].data.posts.eq(2).source.should.eql('bar');
+
+      // Restore config
+      delete hexo.config.index_generator.order_by;
+    });
+
+    it('custom order - invalid order key', function () {
+      hexo.config.index_generator.order_by = '-something';
+
+      var result = generator(locals);
+
+      result[0].data.posts.eq(0).source.should.eql('foo');
+      result[0].data.posts.eq(1).source.should.eql('bar');
+      result[0].data.posts.eq(2).source.should.eql('baz');
+
+      // Restore config
+      delete hexo.config.index_generator.order_by;
+    });
   });
 
   it('custom pagination_dir', function(){
