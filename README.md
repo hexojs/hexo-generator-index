@@ -15,9 +15,11 @@ $ npm install hexo-generator-index --save
 ``` yaml
 index_generator:
   per_page: 10
+  order_by: -date
 ```
 
 - **per_page**: Posts displayed per page. (0 = disable pagination)
+- **order_by**: Posts order. (Order by date descending by default)
 
 ## License
 
