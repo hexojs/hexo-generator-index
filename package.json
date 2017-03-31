@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-index",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Index generator for Hexo.",
   "main": "index",
   "scripts": {
