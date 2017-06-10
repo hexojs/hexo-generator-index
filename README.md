@@ -11,6 +11,7 @@ $ npm install hexo-generator-index --save
 ```
 
 ## Options
+Add or modify the following section to your root _config.yml file
 
 ``` yaml
 index_generator:
