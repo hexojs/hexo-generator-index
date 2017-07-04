@@ -16,16 +16,14 @@ describe('Index generator', function() {
     order_by: '-date'
   };
 
-  before(function() {
-    return Post.insert([
+  before(() => hexo.init().then(() => Post.insert([
       {source: 'foo', slug: 'foo', date: 1e8, order: 0},
       {source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10},
       {source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1}
-    ]).then(function(data) {
+    ])).then(data => {
       posts = Post.sort('-date');
       locals = hexo.locals.toObject();
-    });
-  });
+    }));
 
   it('pagination enabled', function() {
     hexo.config.index_generator.per_page = 2;
