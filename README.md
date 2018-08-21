@@ -20,9 +20,15 @@ index_generator:
   order_by: -date
 ```
 
-- **path**: Root path for your blogs index page. (default = '')
-- **per_page**: Posts displayed per page. (0 = disable pagination)
-- **order_by**: Posts order. (Order by date descending by default)
+- **path**: Root path for your blog's index page. 
+  - default: ""
+- **per_page**: Posts displayed per page.
+  - default: [`config.per_page`](https://hexo.io/docs/configuration.html#Pagination) as specified in the official Hexo docs (if present), otherwise `10`
+  - `0` disables pagination
+- **order_by**: Posts order. 
+  - default: date descending
+
+`pagination_dir`
 
 ## License
 
