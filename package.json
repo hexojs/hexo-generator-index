@@ -36,7 +36,6 @@
     "mocha": "^2.0.1"
   },
   "dependencies": {
-    "hexo-pagination": "0.0.2",
-    "object-assign": "^4.0.1"
+    "hexo-pagination": "0.0.2"
   }
 }
