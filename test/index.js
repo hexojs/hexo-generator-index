@@ -1,14 +1,14 @@
 'use strict';
 
-var should = require('chai').should(); // eslint-disable-line
-var Hexo = require('hexo');
+const should = require('chai').should(); // eslint-disable-line
+const Hexo = require('hexo');
 
-describe('Index generator', function() {
-  var hexo = new Hexo(__dirname, {silent: true});
-  var Post = hexo.model('Post');
-  var generator = require('../lib/generator').bind(hexo);
-  var posts;
-  var locals;
+describe('Index generator', () => {
+  const hexo = new Hexo(__dirname, {silent: true});
+  const Post = hexo.model('Post');
+  const generator = require('../lib/generator').bind(hexo);
+  let posts;
+  let locals;
 
   // Default config
   hexo.config.index_generator = {
@@ -25,14 +25,14 @@ describe('Index generator', function() {
       locals = hexo.locals.toObject();
     }));
 
-  it('pagination enabled', function() {
+  it('pagination enabled', () => {
     hexo.config.index_generator.per_page = 2;
 
-    var result = generator(locals);
+    const result = generator(locals);
 
     result.length.should.eql(2);
 
-    for (var i = 0, len = result.length; i < len; i++) {
+    for (let i = 0, len = result.length; i < len; i++) {
       result[i].layout.should.eql(['index', 'archive']);
       result[i].data.current.should.eql(i + 1);
       result[i].data.base.should.eql('');
@@ -61,10 +61,10 @@ describe('Index generator', function() {
     hexo.config.index_generator.per_page = 10;
   });
 
-  it('pagination disabled', function() {
+  it('pagination disabled', () => {
     hexo.config.index_generator.per_page = 0;
 
-    var result = generator(locals);
+    const result = generator(locals);
 
     result.length.should.eql(1);
 
@@ -85,17 +85,17 @@ describe('Index generator', function() {
     hexo.config.index_generator.per_page = 10;
   });
 
-  describe('order', function() {
-    it('default order', function() {
-      var result = generator(locals);
+  describe('order', () => {
+    it('default order', () => {
+      const result = generator(locals);
 
       result[0].data.posts.should.eql(posts);
     });
 
-    it('custom order', function() {
+    it('custom order', () => {
       hexo.config.index_generator.order_by = '-order';
 
-      var result = generator(locals);
+      let result = generator(locals);
 
       result[0].data.posts.eq(0).source.should.eql('bar');
       result[0].data.posts.eq(1).source.should.eql('baz');
@@ -113,10 +113,10 @@ describe('Index generator', function() {
       delete hexo.config.index_generator.order_by;
     });
 
-    it('custom order - invalid order key', function() {
+    it('custom order - invalid order key', () => {
       hexo.config.index_generator.order_by = '-something';
 
-      var result = generator(locals);
+      const result = generator(locals);
 
       result[0].data.posts.eq(0).source.should.eql('foo');
       result[0].data.posts.eq(1).source.should.eql('bar');
@@ -127,11 +127,11 @@ describe('Index generator', function() {
     });
   });
 
-  it('custom pagination_dir', function() {
+  it('custom pagination_dir', () => {
     hexo.config.index_generator.per_page = 1;
     hexo.config.pagination_dir = 'yo';
 
-    var result = generator(locals);
+    const result = generator(locals);
 
     result[0].path.should.eql('');
     result[1].path.should.eql('yo/2/');
