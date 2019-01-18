@@ -27,6 +27,7 @@ index_generator:
   - `0` disables pagination
 - **order_by**: Posts order. 
   - default: date descending
+  - note that if your posts have a `priority` property, it will be used to order your post taking precedence over `order_by`
 
 `pagination_dir`
 
