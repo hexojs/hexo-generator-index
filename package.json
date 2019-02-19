@@ -33,7 +33,7 @@
     "istanbul": "^0.4.0",
     "jscs": "^3.0.7",
     "jscs-preset-hexo": "^1.0.1",
-    "mocha": "^5.2.0"
+    "mocha": "^6.0.0"
   },
   "dependencies": {
     "hexo-pagination": "0.1.0"
