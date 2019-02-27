@@ -7,8 +7,8 @@ describe('Index generator', () => {
   const hexo = new Hexo(__dirname, {silent: true});
   const Post = hexo.model('Post');
   const generator = require('../lib/generator').bind(hexo);
-  let posts;
-  let locals;
+  let posts,
+    locals;
 
   // Default config
   hexo.config.index_generator = {
@@ -17,13 +17,13 @@ describe('Index generator', () => {
   };
 
   before(() => hexo.init().then(() => Post.insert([
-      {source: 'foo', slug: 'foo', date: 1e8, order: 0},
-      {source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10},
-      {source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1}
-    ])).then(data => {
-      posts = Post.sort('-date');
-      locals = hexo.locals.toObject();
-    }));
+    {source: 'foo', slug: 'foo', date: 1e8, order: 0},
+    {source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10},
+    {source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1}
+  ])).then(data => {
+    posts = Post.sort('-date');
+    locals = hexo.locals.toObject();
+  }));
 
   it('pagination enabled', () => {
     hexo.config.index_generator.per_page = 2;

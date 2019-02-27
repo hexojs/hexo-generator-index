@@ -1,5 +1,4 @@
 {
-  "extend": "../.eslintrc",
   "rules": {
     "no-unused-expressions": 0
   },
