@@ -12,7 +12,7 @@
     "lib": "./lib"
   },
   "engines": {
-    "node": ">=6.9.0"
+    "node": ">=8.6.0"
   },
   "repository": "hexojs/hexo-generator-index",
   "homepage": "http://hexo.io/",
