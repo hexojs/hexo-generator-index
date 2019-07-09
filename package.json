@@ -11,6 +11,10 @@
   "directories": {
     "lib": "./lib"
   },
+  "files": [
+    "index.js",
+    "lib/"
+  ],
   "engines": {
     "node": ">=6.9.0"
   },
