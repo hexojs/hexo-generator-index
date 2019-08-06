@@ -27,8 +27,9 @@ index_generator:
   - `0` disables pagination
 - **order_by**: Posts order. 
   - default: date descending
-
-`pagination_dir`
+- **pagination_dir**: URL format.
+  - default: 'page'
+  - `awesome-page` makes the URL ends with 'awesome-page/<page number>' for second page and beyond.
 
 ## License
 
