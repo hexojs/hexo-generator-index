@@ -1,6 +1,8 @@
 # hexo-generator-index
 
-[![Build Status](https://travis-ci.org/hexojs/hexo-generator-index.svg?branch=master)](https://travis-ci.org/hexojs/hexo-generator-index)  [![NPM version](https://badge.fury.io/js/hexo-generator-index.svg)](http://badge.fury.io/js/hexo-generator-index) [![Coverage Status](https://img.shields.io/coveralls/hexojs/hexo-generator-index.svg)](https://coveralls.io/r/hexojs/hexo-generator-index?branch=master)
+[![Build Status](https://travis-ci.org/hexojs/hexo-generator-index.svg?branch=master)](https://travis-ci.org/hexojs/hexo-generator-index)
+[![NPM version](https://badge.fury.io/js/hexo-generator-index.svg)](https://www.npmjs.com/package/hexo-generator-index)
+[![Coverage Status](https://img.shields.io/coveralls/hexojs/hexo-generator-index.svg)](https://coveralls.io/r/hexojs/hexo-generator-index?branch=master)
 
 Index generator for [Hexo].
 
@@ -28,8 +30,9 @@ index_generator:
 - **order_by**: Posts order. 
   - default: date descending
   - note that if your posts have a `priority` property, it will be used to order your post taking precedence over `order_by`
-
-`pagination_dir`
+- **pagination_dir**: URL format.
+  - default: 'page'
+  - `awesome-page` makes the URL ends with 'awesome-page/<page number>' for second page and beyond.
 
 ## License
 

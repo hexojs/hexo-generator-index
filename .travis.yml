@@ -8,7 +8,8 @@ cache:
     - node_modules
 
 node_js:
-  - "6"
+  - "8"
+  - "10"
   - "node"
 
 script:
@@ -17,4 +18,4 @@ script:
 
 after_script:
   - npm install coveralls
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - nyc report --reporter=text-lcov | coveralls
