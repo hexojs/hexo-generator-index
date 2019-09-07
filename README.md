@@ -37,7 +37,7 @@ index_generator:
 
 ## Note
 
-If your theme defines a non-archive `index` layout (e.g. About Me page), this plugin would follow that layout instead and not generate an archive. In that case, use [hexo-generator-archive](https://github.com/hexo-generator-archive) to generate an archive according to the `archive` layout.
+If your theme define a non-archive `index` layout (e.g. About Me page), this plugin would follow that layout instead and not generate an archive. In that case, use [hexo-generator-archive](https://github.com/hexojs/hexo-generator-archive) to generate an archive according to the `archive` layout.
 
 ## License
 
