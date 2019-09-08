@@ -22,6 +22,7 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
+  pagination_dir: page
 ```
 
 - **path**: Root path for your blog's index page. 
