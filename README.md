@@ -6,6 +6,8 @@
 
 Index generator for [Hexo].
 
+It generates an archive of posts on your homepage, according to the `index` or `archive` layout of your theme.
+
 ## Installation
 
 ``` bash
@@ -32,6 +34,10 @@ index_generator:
 - **pagination_dir**: URL format.
   - default: 'page'
   - `awesome-page` makes the URL ends with 'awesome-page/<page number>' for second page and beyond.
+
+## Note
+
+If your theme define a non-archive `index` layout (e.g. About Me page), this plugin would follow that layout instead and not generate an archive. In that case, use [hexo-generator-archive](https://github.com/hexojs/hexo-generator-archive) to generate an archive according to the `archive` layout.
 
 ## License
 
