@@ -38,6 +38,6 @@
   },
   "dependencies": {
     "hexo-pagination": "1.0.0",
-    "lodash": "^4.17.15"
+    "timsort": "^0.3.0"
   }
 }
