@@ -15,6 +15,7 @@ $ npm install hexo-generator-index --save
 ```
 
 ## Options
+
 Add or modify the following section to your root _config.yml file
 
 ``` yaml
@@ -35,6 +36,18 @@ index_generator:
 - **pagination_dir**: URL format.
   - default: 'page'
   - `awesome-page` makes the URL ends with 'awesome-page/<page number>' for second page and beyond.
+
+## Usage
+
+The `sticky` parameter in the post [Front-matter](https://hexo.io/docs/front-matter) will be used to pin the post to the top of the index page.
+
+```markdown
+---
+title: Hello World
+date: 2013/7/13 20:46:25
+sticky: 100
+---
+```
 
 ## Note
 
