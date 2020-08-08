@@ -39,9 +39,9 @@ index_generator:
 
 ## Usage
 
-The `sticky` parameter in the post [Front-matter](https://hexo.io/docs/front-matter) will be used to pin the post to the top of the index page.
+The `sticky` parameter in the post [Front-matter](https://hexo.io/docs/front-matter) will be used to pin the post to the top of the index page. Higher `sticky` means that it will be ranked first.
 
-```markdown
+```yml
 ---
 title: Hello World
 date: 2013/7/13 20:46:25
