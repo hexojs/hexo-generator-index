@@ -37,7 +37,6 @@
     "nyc": "^15.0.0"
   },
   "dependencies": {
-    "hexo-pagination": "1.0.0",
-    "timsort": "^0.3.0"
+    "hexo-pagination": "1.0.0"
   }
 }
