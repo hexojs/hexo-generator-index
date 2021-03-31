@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
-    "test-cov": "nyc npm run test"
+    "test-cov": "nyc --reporter=lcovonly npm run test"
   },
   "directories": {
     "lib": "./lib"
@@ -16,7 +16,7 @@
     "lib/"
   ],
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=12.9.0"
   },
   "repository": "hexojs/hexo-generator-index",
   "homepage": "http://hexo.io/",
@@ -37,7 +37,6 @@
     "nyc": "^15.0.0"
   },
   "dependencies": {
-    "hexo-pagination": "1.0.0",
-    "timsort": "^0.3.0"
+    "hexo-pagination": "1.0.0"
   }
 }
