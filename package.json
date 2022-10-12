@@ -19,14 +19,14 @@
     "node": ">=12.9.0"
   },
   "repository": "hexojs/hexo-generator-index",
-  "homepage": "http://hexo.io/",
+  "homepage": "https://hexo.io/",
   "keywords": [
     "hexo",
     "generator",
     "index",
     "home"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "Tommy Chen <tommy351@gmail.com> (https://zespia.tw)",
   "license": "MIT",
   "devDependencies": {
     "chai": "^4.2.0",
