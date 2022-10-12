@@ -6,7 +6,7 @@
   "scripts": {
     "eslint": "eslint .",
     "test": "mocha test/index.js",
-    "test-cov": "nyc --reporter=lcovonly npm run test"
+    "test-cov": "c8 --reporter=lcovonly npm run test"
   },
   "directories": {
     "lib": "./lib"
@@ -29,14 +29,14 @@
   "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^8.5.0",
+    "c8": "^7.12.0",
+    "chai": "^4.3.6",
+    "eslint": "^8.25.0",
     "eslint-config-hexo": "^5.0.0",
-    "hexo": "^6.0.0",
-    "mocha": "^10.0.0",
-    "nyc": "^15.0.0"
+    "hexo": "^6.3.0",
+    "mocha": "^10.0.0"
   },
   "dependencies": {
-    "hexo-pagination": "2.0.0"
+    "hexo-pagination": "3.0.0"
   }
 }
