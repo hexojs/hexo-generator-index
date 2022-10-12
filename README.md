@@ -57,4 +57,4 @@ If your theme define a non-archive `index` layout (e.g. About Me page), this plu
 
 MIT
 
-[Hexo]: http://hexo.io/
+[Hexo]: https://hexo.io/
