@@ -127,7 +127,7 @@ describe('Index generator', () => {
     });
   });
 
-  it('custom pagination_dir', () => {
+  it('custom pagination_dir - global setting', () => {
     hexo.config.index_generator.per_page = 1;
     hexo.config.pagination_dir = 'yo';
 
@@ -141,4 +141,20 @@ describe('Index generator', () => {
     hexo.config.index_generator.per_page = 10;
     hexo.config.pagination_dir = 'page';
   });
+
+  it('custom pagination_dir - plugin setting', () => {
+    hexo.config.index_generator.per_page = 1;
+    hexo.config.index_generator.pagination_dir = 'yoyo';
+
+    const result = generator(locals);
+
+    result[0].path.should.eql('');
+    result[1].path.should.eql('yoyo/2/');
+    result[2].path.should.eql('yoyo/3/');
+
+    // Restore config
+    hexo.config.index_generator.per_page = 10;
+    hexo.config.index_generator.pagination_dir = 'page';
+  });
+
 });
