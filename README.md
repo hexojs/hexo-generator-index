@@ -24,6 +24,7 @@ index_generator:
   per_page: 10
   order_by: -date
   pagination_dir: page
+  layout: ['index', 'archive']
 ```
 
 - **path**: Root path for your blog's index page. 
@@ -36,6 +37,8 @@ index_generator:
 - **pagination_dir**: URL format.
   - default: 'page'
   - `awesome-page` makes the URL ends with 'awesome-page/<page number>' for second page and beyond.
+- **layout**: custom layout.
+  - defalut: `["index", "archive"]`
 
 ## Usage
 
