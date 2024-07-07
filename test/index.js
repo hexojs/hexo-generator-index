@@ -141,4 +141,20 @@ describe('Index generator', () => {
     hexo.config.index_generator.per_page = 10;
     hexo.config.pagination_dir = 'page';
   });
+
+  it('custom layout', () => {
+    const custom_layout = ['custom', 'archive', 'index'];
+    hexo.config.index_generator.layout = [...custom_layout];
+
+    const result = generator(locals);
+
+    result.forEach(res => {
+      res.layout.should.eql(custom_layout);
+    });
+
+    // Restore config
+    delete hexo.config.index_generator.layout;
+
+  });
+
 });
