@@ -11,10 +11,14 @@ describe('Index generator', () => {
     locals;
 
   // Default config
-  hexo.config.index_generator = {
+  const default_index_generator = Object.freeze({
     per_page: 10,
     order_by: '-date'
-  };
+  });
+
+  beforeEach(() => {
+    hexo.config.index_generator = {...default_index_generator};
+  });
 
   before(() => hexo.init().then(() => Post.insert([
     {source: 'foo', slug: 'foo', date: 1e8, order: 0},
@@ -57,8 +61,6 @@ describe('Index generator', () => {
     result[1].data.next_link.should.eql('');
     result[1].data.__index.should.be.true;
 
-    // Restore config
-    hexo.config.index_generator.per_page = 10;
   });
 
   it('pagination disabled', () => {
@@ -81,8 +83,6 @@ describe('Index generator', () => {
     result[0].data.next_link.should.eql('');
     result[0].data.__index.should.be.true;
 
-    // Restore config
-    hexo.config.index_generator.per_page = 10;
   });
 
   describe('order', () => {
@@ -109,8 +109,6 @@ describe('Index generator', () => {
       result[0].data.posts.eq(1).source.should.eql('baz');
       result[0].data.posts.eq(2).source.should.eql('bar');
 
-      // Restore config
-      delete hexo.config.index_generator.order_by;
     });
 
     it('custom order - invalid order key', () => {
@@ -122,8 +120,6 @@ describe('Index generator', () => {
       result[0].data.posts.eq(1).source.should.eql('bar');
       result[0].data.posts.eq(2).source.should.eql('baz');
 
-      // Restore config
-      delete hexo.config.index_generator.order_by;
     });
   });
 
@@ -137,9 +133,6 @@ describe('Index generator', () => {
     result[1].path.should.eql('yo/2/');
     result[2].path.should.eql('yo/3/');
 
-    // Restore config
-    hexo.config.index_generator.per_page = 10;
-    hexo.config.pagination_dir = 'page';
   });
 
   it('custom pagination_dir - plugin setting', () => {
@@ -156,5 +149,4 @@ describe('Index generator', () => {
     hexo.config.index_generator.per_page = 10;
     hexo.config.index_generator.pagination_dir = 'page';
   });
-
 });
