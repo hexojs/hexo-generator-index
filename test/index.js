@@ -160,9 +160,6 @@ describe('Index generator', () => {
       res.layout.should.eql(custom_layout);
     });
 
-    // Restore config
-    delete hexo.config.index_generator.layout;
-
   });
 
 });
