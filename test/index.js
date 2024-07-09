@@ -133,6 +133,8 @@ describe('Index generator', () => {
     result[1].path.should.eql('yo/2/');
     result[2].path.should.eql('yo/3/');
 
+    // Restore config
+    hexo.config.pagination_dir = 'page';
   });
 
   it('custom pagination_dir - plugin setting', () => {
@@ -145,8 +147,5 @@ describe('Index generator', () => {
     result[1].path.should.eql('yoyo/2/');
     result[2].path.should.eql('yoyo/3/');
 
-    // Restore config
-    hexo.config.index_generator.per_page = 10;
-    hexo.config.index_generator.pagination_dir = 'page';
   });
 });
