@@ -10,33 +10,33 @@ It generates an archive of posts on your homepage, according to the `index` or `
 
 ## Installation
 
-``` bash
-$ npm install hexo-generator-index --save
+```bash
+npm install hexo-generator-index --save
 ```
 
 ## Options
 
-Add or modify the following section to your root _config.yml file
+Add or modify the following section to your root `_config.yml` file.
 
-``` yaml
+```yaml
 index_generator:
-  path: ''
+  path: ""
   per_page: 10
   order_by: -date
   pagination_dir: page
-  layout: ['index', 'archive']
+  layout: ["index", "archive"]
 ```
 
-- **path**: Root path for your blog's index page. 
-  - default: ""
+- **path**: Root path for your blog's index page.
+  - default: `""`
 - **per_page**: Posts displayed per page.
   - default: [`config.per_page`](https://hexo.io/docs/configuration.html#Pagination) as specified in the official Hexo docs (if present), otherwise `10`
-  - `0` disables pagination
-- **order_by**: Posts order. 
-  - default: date descending
+  - `0` disables pagination.
+- **order_by**: Posts order.
+  - default: `-date` (date descending)
 - **pagination_dir**: URL format.
-  - default: 'page'
-  - `awesome-page` makes the URL ends with 'awesome-page/<page number>' for second page and beyond.
+  - default: `page`
+  - e.g. set `awesome-page` makes the URL ends with `awesome-page/<page number>` for second page and beyond.
 - **layout**: custom layout.
   - defalut: `["index", "archive"]`
 
