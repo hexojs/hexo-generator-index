@@ -148,4 +148,17 @@ describe('Index generator', () => {
     result[2].path.should.eql('yoyo/3/');
 
   });
+
+  it('custom layout', () => {
+    const custom_layout = ['custom', 'archive', 'index'];
+    hexo.config.index_generator.layout = [...custom_layout];
+
+    const result = generator(locals);
+
+    result.forEach(res => {
+      res.layout.should.eql(custom_layout);
+    });
+
+  });
+
 });
