@@ -37,6 +37,6 @@
     "mocha": "^10.0.0"
   },
   "dependencies": {
-    "hexo-pagination": "3.0.0"
+    "hexo-pagination": "4.0.0"
   }
 }
