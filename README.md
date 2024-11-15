@@ -52,6 +52,16 @@ sticky: 100
 ---
 ```
 
+The `hidden` parameter can be used to hide a post from the index page. When `hidden: true` is set, the post will not appear in the index but will still be accessible in other ways (e.g., the archive page or via a direct link).
+
+```yml
+---  
+title: Secret Post  
+date: 2024/11/11 11:11:11  
+hidden: true  
+---  
+```
+
 ## Note
 
 If your theme define a non-archive `index` layout (e.g. About Me page), this plugin would follow that layout instead and not generate an archive. In that case, use [hexo-generator-archive](https://github.com/hexojs/hexo-generator-archive) to generate an archive according to the `archive` layout.
