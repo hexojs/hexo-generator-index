@@ -177,6 +177,7 @@ describe('i18n index support', () => {
 
   beforeEach(() => {
     hexo.config.index_generator = { ...default_index_generator };
+    hexo.config.language = ['en', 'zh-CN', 'ja'];
   });
 
   before(() => hexo.init().then(() => Post.insert([
@@ -187,15 +188,6 @@ describe('i18n index support', () => {
     posts = Post.slice(0, -1).sort('-date');
     locals = hexo.locals.toObject();
   }));
-
-
-  beforeEach(async () => {
-    hexo.config.language = ['en', 'zh-CN', 'ja'];
-    await Post.insert([
-    ]);
-    hexo.locals.invalidate();
-    locals = hexo.locals.toObject();
-  });
 
   it('generate index page for each language and default index page', () => {
     const result = generator(locals);
@@ -221,5 +213,17 @@ describe('i18n index support', () => {
     result[3].data.posts.length.should.eql(1);
     result[3].data.posts.eq(0).source.should.eql('ja/helloworld');
   });
+  
+  it('single_lang_index enabled', () => {
+    hexo.config.index_generator.single_lang_index = true;
+
+    const result = generator(locals);
+
+    result.length.should.eql(4);
+
+    // Default index page
+    result[0].path.should.eql('');
+    result[0].data.posts.length.should.eql(1);
+  })
 });
 
