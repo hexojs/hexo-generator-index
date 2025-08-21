@@ -4,7 +4,7 @@ const should = require('chai').should(); // eslint-disable-line
 const Hexo = require('hexo');
 
 describe('Index generator', () => {
-  const hexo = new Hexo(__dirname, {silent: true});
+  const hexo = new Hexo(__dirname, { silent: true });
   const Post = hexo.model('Post');
   const generator = require('../lib/generator').bind(hexo);
   let posts,
@@ -17,14 +17,14 @@ describe('Index generator', () => {
   });
 
   beforeEach(() => {
-    hexo.config.index_generator = {...default_index_generator};
+    hexo.config.index_generator = { ...default_index_generator };
   });
 
   before(() => hexo.init().then(() => Post.insert([
-    {source: 'foo', slug: 'foo', date: 1e8, order: 0},
-    {source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10},
-    {source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1},
-    {source: 'qux', slug: 'qux', date: 1e8 - 8, order: 8, hidden: true}
+    { source: 'foo', slug: 'foo', date: 1e8, order: 0 },
+    { source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10 },
+    { source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1 },
+    { source: 'qux', slug: 'qux', date: 1e8 - 8, order: 8, hidden: true },
   ])).then(data => {
     posts = Post.slice(0, -1).sort('-date');
     locals = hexo.locals.toObject();
@@ -161,5 +161,65 @@ describe('Index generator', () => {
     });
 
   });
-
 });
+
+describe('i18n index support', () => {
+  const hexo = new Hexo(__dirname, { silent: true });
+  const Post = hexo.model('Post');
+  const generator = require('../lib/generator').bind(hexo);
+  let posts,
+    locals;
+
+  const default_index_generator = Object.freeze({
+    per_page: 10,
+    order_by: '-date'
+  });
+
+  beforeEach(() => {
+    hexo.config.index_generator = { ...default_index_generator };
+  });
+
+  before(() => hexo.init().then(() => Post.insert([
+    { source: 'en/helloworld', slug: 'en/helloworld', date: 1e8 + 2, content: 'hello world', lang: 'en' },
+    { source: 'zh-CN/helloworld', slug: 'zh-CN/helloworld', date: 1e8 + 3, content: '你好，世界', lang: 'zh-CN' },
+    { source: 'ja/helloworld', slug: 'ja/helloworld', date: 1e8 + 4, content: 'こんにちは、世界', lang: 'ja' }
+  ])).then(data => {
+    posts = Post.slice(0, -1).sort('-date');
+    locals = hexo.locals.toObject();
+  }));
+
+
+  beforeEach(async () => {
+    hexo.config.language = ['en', 'zh-CN', 'ja'];
+    await Post.insert([
+    ]);
+    hexo.locals.invalidate();
+    locals = hexo.locals.toObject();
+  });
+
+  it('generate index page for each language and default index page', () => {
+    const result = generator(locals);
+
+    result.length.should.eql(4);
+
+    // Default index page
+    result[0].path.should.eql('');
+    result[0].data.posts.length.should.eql(3);
+
+    // English index page
+    result[1].path.should.eql('en/');
+    result[1].data.posts.length.should.eql(1);
+    result[1].data.posts.eq(0).source.should.eql('en/helloworld');
+
+    // Chinese index page
+    result[2].path.should.eql('zh-CN/');
+    result[2].data.posts.length.should.eql(1);
+    result[2].data.posts.eq(0).source.should.eql('zh-CN/helloworld');
+
+    // Japanese index page
+    result[3].path.should.eql('ja/');
+    result[3].data.posts.length.should.eql(1);
+    result[3].data.posts.eq(0).source.should.eql('ja/helloworld');
+  });
+});
+
