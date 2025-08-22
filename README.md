@@ -87,9 +87,9 @@ This will generate:
 
 Each index page will contain posts in that language.
 
-To use language switch in some themes, there is some suggestion:
+To use language switch in some themes, there are some suggestions:
 1. set your `_config.yml` option `permalink` with `:lang/` prefix, like `:lang/:title/`.
-2. set your `new_post_name` option with `:lang`, like `: :lang/:title.md`, and you can use command like `hexo new post --lang zh-CN post.md` to add new post.
+2. set your `new_post_name` option with `:lang`, like `:lang/:title.md`, and you can use command like `hexo new post --lang zh-CN post.md` to add new post.
 3. organized your post with structure:
 ```
 - source
