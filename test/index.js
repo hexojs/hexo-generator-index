@@ -24,7 +24,7 @@ describe('Index generator', () => {
     { source: 'foo', slug: 'foo', date: 1e8, order: 0 },
     { source: 'bar', slug: 'bar', date: 1e8 + 1, order: 10 },
     { source: 'baz', slug: 'baz', date: 1e8 - 1, order: 1 },
-    { source: 'qux', slug: 'qux', date: 1e8 - 8, order: 8, hidden: true },
+    { source: 'qux', slug: 'qux', date: 1e8 - 8, order: 8, hidden: true }
   ])).then(data => {
     posts = Post.slice(0, -1).sort('-date');
     locals = hexo.locals.toObject();
@@ -167,8 +167,7 @@ describe('i18n index support', () => {
   const hexo = new Hexo(__dirname, { silent: true });
   const Post = hexo.model('Post');
   const generator = require('../lib/generator').bind(hexo);
-  let posts,
-    locals;
+  let locals;
 
   const default_index_generator = Object.freeze({
     per_page: 10,
@@ -185,7 +184,6 @@ describe('i18n index support', () => {
     { source: 'zh-CN/helloworld', slug: 'zh-CN/helloworld', date: 1e8 + 3, content: '你好，世界', lang: 'zh-CN' },
     { source: 'ja/helloworld', slug: 'ja/helloworld', date: 1e8 + 4, content: 'こんにちは、世界', lang: 'ja' }
   ])).then(data => {
-    posts = Post.slice(0, -1).sort('-date');
     locals = hexo.locals.toObject();
   }));
 
@@ -213,7 +211,7 @@ describe('i18n index support', () => {
     result[3].data.posts.length.should.eql(1);
     result[3].data.posts.eq(0).source.should.eql('ja/helloworld');
   });
-  
+
   it('single_lang_index enabled', () => {
     hexo.config.index_generator.single_lang_index = true;
 
@@ -224,6 +222,6 @@ describe('i18n index support', () => {
     // Default index page
     result[0].path.should.eql('');
     result[0].data.posts.length.should.eql(1);
-  })
+  });
 });
 
