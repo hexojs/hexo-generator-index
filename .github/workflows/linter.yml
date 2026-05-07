@@ -2,15 +2,18 @@ name: Linter
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   linter:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 18
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
         with:
-          node-version: "18"
+          node-version: "22"
       - name: Install Dependencies
         run: npm install
       - name: Lint
