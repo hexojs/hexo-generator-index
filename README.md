@@ -25,6 +25,7 @@ index_generator:
   order_by: -date
   pagination_dir: page
   layout: ["index", "archive"]
+  single_lang_index: false
 ```
 
 - **path**: Root path for your blog's index page.
@@ -39,6 +40,8 @@ index_generator:
   - e.g. set `awesome-page` makes the URL ends with `awesome-page/<page number>` for second page and beyond.
 - **layout**: custom layout.
   - defalut: `["index", "archive"]`
+- **single_lang_index**: Generate home page only the first language
+  - default: `false`
 
 ## Usage
 
@@ -60,6 +63,43 @@ title: Secret Post
 date: 2024/11/11 11:11:11  
 hidden: true  
 ---  
+```
+
+## i18n index support
+
+If you have multiple languages configured in your Hexo site, this plugin will generate an index page for each language defined in the `language` configuration.
+
+For example, if your `_config.yml` has:
+
+```yaml
+language:
+  - en
+  - zh-CN
+  - ja
+```
+
+This will generate:
+
+- `index.html` (home index page, if `single_lang_index` is `false`, it contains all language post)
+- `en/index.html` (for `en`)
+- `zh-CN/index.html` (for `zh-CN`)
+- `ja/index.html` (for `ja`)
+
+Each index page will contain posts in that language.
+
+To use language switch in some themes, there are some suggestions:
+1. set your `_config.yml` option `permalink` with `:lang/` prefix, like `:lang/:title/`.
+2. set your `new_post_name` option with `:lang`, like `:lang/:title.md`, and you can use command like `hexo new post --lang zh-CN post.md` to add new post.
+3. organized your post with structure:
+```
+- source
+  - _posts
+    - en
+      - post.md
+    - zh-CN
+      - post.md
+    - ja
+      - post.md
 ```
 
 ## Note
